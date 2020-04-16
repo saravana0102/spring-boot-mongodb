@@ -27,11 +27,8 @@ public class StudentController {
 	@Autowired
 	StudentServiceDao dao;
 
-	private static Logger logger = LoggerFactory.getLogger(StudentController.class);
-
 	@PostMapping(value = "/create",headers="Accept=application/json")
 	public String create(@RequestBody StudentDetails studentDetails) {
-		logger.info("StudentController(create) --> Enter");
 		String response = "";
 		final JSONObject jsonObject = new JSONObject();
 		try {
@@ -46,19 +43,16 @@ public class StudentController {
 				jsonObject.put("data", "Failed to add Student.");
 			}
 		} catch (Exception e) {
-			logger.error("Exception in StudentController(create) -->" + e);
 			jsonObject.put("statusCode", 500);
 			jsonObject.put("status", "Error");
 			jsonObject.put("data", "Failed to add student.");
 		}
 		response = new Gson().toJson(jsonObject);
-		logger.info("StudentController(create) --> Exit");
 		return response;
 	}
 	
 	@GetMapping(value = "/getall")
 	public String getAllStudentDetails() {
-		logger.info("StudentController(getAllStudentDetails) --> Enter");
 		String response = "";
 		final JSONObject jsonObject = new JSONObject();
 		try {
@@ -73,13 +67,11 @@ public class StudentController {
 				jsonObject.put("data", "No data found.");
 			}
 		} catch (Exception e) {
-			logger.error("Exception in StudentController(getAllStudentDetails) -->" + e);
 			jsonObject.put("statusCode", 500);
 			jsonObject.put("status", "Error");
 			jsonObject.put("data", "No data found.");
 		}
 		response = new Gson().toJson(jsonObject);
-		logger.info("StudentController(getAllStudentDetails) --> Exit");
 		return response;
 	}
 }

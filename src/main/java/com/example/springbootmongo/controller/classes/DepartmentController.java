@@ -29,12 +29,9 @@ public class DepartmentController {
 	
 	@Autowired
 	DepartmentServiceDao dao;
-	
-	private static Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
 	@PostMapping(value = "/create",headers="Accept=application/json")
 	public String create(@RequestBody DepartmentDetails departmentDetails) {
-		logger.info("DepartmentController(create) --> Enter");
 		String response = "";
 		final JSONObject jsonObject = new JSONObject();
 		try {
@@ -49,19 +46,16 @@ public class DepartmentController {
 				jsonObject.put("data", "Failed to add department.");
 			}
 		} catch (Exception e) {
-			logger.error("Exception in DepartmentController(create) -->" + e);
 			jsonObject.put("statusCode", 500);
 			jsonObject.put("status", "Error");
 			jsonObject.put("data", "Failed to add department.");
 		}
 		response = new Gson().toJson(jsonObject);
-		logger.info("DepartmentController(create) --> Exit");
 		return response;
 	}
 
 	@GetMapping(value = "/getall")
 	public String getAllDepartmentDetails() {
-		logger.info("DepartmentController(getAllDepartmentDetails) --> Enter");
 		String response = "";
 		final JSONObject jsonObject = new JSONObject();
 		try {
@@ -76,20 +70,17 @@ public class DepartmentController {
 				jsonObject.put("data", "No data found.");
 			}
 		} catch (Exception e) {
-			logger.error("Exception in DepartmentController(getAllDepartmentDetails) -->" + e);
 			jsonObject.put("statusCode", 500);
 			jsonObject.put("status", "Error");
 			jsonObject.put("data", "No data found.");
 		}
 		response = new Gson().toJson(jsonObject);
-		logger.info("DepartmentController(getAllDepartmentDetails) --> Exit");
 		return response;
 	}
 
 
 	@PutMapping(value = "/update")
 	public String update(@RequestBody DepartmentDetails DepartmentDetails) {
-		logger.info("DepartmentController(update) --> Enter");
 		String response = "";
 		final JSONObject jsonObject = new JSONObject();
 		try {
@@ -104,19 +95,16 @@ public class DepartmentController {
 				jsonObject.put("data", "Failed to update details.");
 			}
 		} catch (Exception e) {
-			logger.error("Exception in DepartmentController(update) -->" + e);
 			jsonObject.put("statusCode", 500);
 			jsonObject.put("status", "Error");
 			jsonObject.put("data", "Failed to update details.");
 		}
 		response = new Gson().toJson(jsonObject);
-		logger.info("DepartmentController(update) --> Exit");
 		return response;
 	}
 
 	@DeleteMapping(value = "/delete/{deptId}")
 	public String deleteDepartmentDetailsDetailsById(@PathVariable String deptId) {
-		logger.info("DepartmentController(deleteDepartmentDetailsDetailsById) --> Enter");
 		String response = "";
 		final JSONObject jsonObject = new JSONObject();
 		try {
@@ -131,19 +119,16 @@ public class DepartmentController {
 				jsonObject.put("data", "Failed to delete department.");
 			}
 		} catch (Exception e) {
-			logger.error("Exception in DepartmentController(deleteDepartmentDetailsDetailsById) -->" + e);
 			jsonObject.put("statusCode", 500);
 			jsonObject.put("status", "Error");
 			jsonObject.put("data", "Failed to delete content.");
 		}
 		response = new Gson().toJson(jsonObject);
-		logger.info("DepartmentController(deleteDepartmentDetailsDetailsById) --> Exit");
 		return response;
 	}
 	
 	@GetMapping(value = "/getallDeptStudent")
 	public String getAllDepartmentStudentDetails() {
-		logger.info("DepartmentController(getAllDepartmentStudentDetails) --> Enter");
 		String response = "";
 		final JSONObject jsonObject = new JSONObject();
 		try {
@@ -158,13 +143,11 @@ public class DepartmentController {
 				jsonObject.put("data", "No data found.");
 			}
 		} catch (Exception e) {
-			logger.error("Exception in DepartmentController(getAllDepartmentStudentDetails) -->" + e);
 			jsonObject.put("statusCode", 500);
 			jsonObject.put("status", "Error");
 			jsonObject.put("data", "No data found.");
 		}
 		response = new Gson().toJson(jsonObject);
-		logger.info("DepartmentController(getAllDepartmentStudentDetails) --> Exit");
 		return response;
 	}
 
